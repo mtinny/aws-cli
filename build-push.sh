@@ -4,7 +4,7 @@ set -eux
 
 regi=mtinny
 repo=aws-cli
-tag=${tag:-v0.0.1}
+tag=${tag:-v0.0.2}
 
 image=${regi}/${repo}:${tag}
 latest_image=${regi}/${repo}:latest
