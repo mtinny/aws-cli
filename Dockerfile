@@ -1,4 +1,15 @@
-FROM ubuntu:bionic-20181018
+FROM python:3.6
 
-RUN apt -y update && apt -y install dnsutils wget curl tcpdump iptables iproute2 iputils-ping telnet netcat net-tools jq vim
-ENTRYPOINT ["sleep", "infinity"]
+ARG pip_installer="https://bootstrap.pypa.io/get-pip.py"
+ARG awscli_version="1.16.157"
+
+# Install awscli
+RUN pip install awscli==${awscli_version}
+
+# Install sam
+RUN pip install --user --upgrade aws-sam-cli
+RUN mkdir /data
+RUN chmod -x /data
+
+ENV PATH $PATH:/root/.local/bin
+

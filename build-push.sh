@@ -2,12 +2,15 @@
 
 set -eux
 
-tag=${tag:-v0.0.4}
-image=mtinny/ubuntu-toolbox:${tag}
-latest_image=mtinny/ubuntu-toolbox:latest
+regi=mtinny
+repo=aws-cli
+tag=${tag:-v0.0.1}
+
+image=${regi}/${repo}:${tag}
+latest_image=${regi}/${repo}:latest
 
 docker build -t ${image} .
-docker push ${image}
-
 docker tag ${image} ${latest_image}
+
+docker push ${image}
 docker push ${latest_image}
